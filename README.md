@@ -2,7 +2,7 @@
 
 A serverless, event-driven e-commerce order-processing project designed to handle variable request volume, including recurring Friday traffic spikes.
 
-> **Project status:** The repository was newly created and is being populated from the project documentation and implementation evidence. The current design and scope below are based on the supplied project document. Code and AWS configuration will be added only after they are recovered and verified.
+> **Project status:** Five Lambda source files supplied for this implementation have been committed under `src/lambda/`. These files are the code provided for this repository; their deployment state and end-to-end behavior have not been independently verified.
 
 ## Business problem
 
@@ -50,12 +50,19 @@ The API also exposes GET /orders/{orderId} through **GetOrderStatusFn**.
 
 - documentation/ — project chapters, implementation notes, decisions, and troubleshooting.
 - architecture/ — architecture diagrams and design decisions.
-- src/ — verified Lambda source code, grouped by responsibility.
-- infrastructure/ — verified Terraform and IAM/configuration artifacts.
+- [src/lambda/](src/lambda/) — Lambda source files supplied for this project:
+  - [CreateOrderFn.py](src/lambda/CreateOrderFn.py)
+  - [GetOrderStatusFn.py](src/lambda/GetOrderStatusFn.py)
+  - [ProcessPaymentFn.py](src/lambda/ProcessPaymentFn.py)
+  - [OrdersStreamToSqsFn.py](src/lambda/OrdersStreamToSqsFn.py)
+  - [NotifyCustomerFn.py](src/lambda/NotifyCustomerFn.py)
+- documentation/ — project chapters, implementation notes, decisions, and troubleshooting.
+- architecture/ — architecture diagrams and design decisions.
+- infrastructure/ — infrastructure-as-code and IAM/configuration artifacts, when added.
 - screenshots/ — implementation evidence from the AWS Console and tests.
 - tests/ — repeatable test events and validation material.
 
-These folders will be populated as source artifacts are reviewed. No placeholder code is presented as deployed code.
+The Outbox dispatcher function source is not included yet. The five files above have been committed as supplied; they should be reviewed and tested against the deployed AWS configuration before being described as production-ready.
 
 ## Scope and limitations
 
@@ -65,7 +72,7 @@ The supplied project document explicitly excludes real payment-gateway integrati
 
 The initial project reference is the supplied Project Title PDF. Its chapter plan covers project requirements, architecture, AWS service selection, API Gateway, order management, DynamoDB Streams, Transactional Outbox, SQS, SNS, IAM, monitoring, end-to-end testing, Terraform, limitations, and lessons learned.
 
-As implementation artifacts are recovered, each chapter will link to the corresponding source code, configuration, screenshots, and test evidence.
+As implementation artifacts are added, each chapter will link to the corresponding source code, configuration, screenshots, and test evidence.
 
 ## Security note
 
